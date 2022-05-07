@@ -1,10 +1,18 @@
+<!-- @autor: Luciano Oliver
+Criado em: 20/11/2021
+Tipo: CRUD PHP
+Linguagens usadas: HTML, CSS, JS e PHP
+Ferramentas: Framework Materialize -->
+
 <?php 
 
     //Conexão - Inclui o arquivo db_connect.php
-    include_once 'php_action/db_connect.php';
-    //Menasagem - Inclui o arquivo mensagem.php
+    include_once 'php_action/conexao_com_banco.php';
+    //Mensagem - Inclui o arquivo mensagem.php
     include_once 'includes/mensagem.php';
-    //Header - Inclui o header ( cabeçalho no documento atual)
+    /*Código para adicionar titulo dinãmicamente atraves de uma variavel */
+    $cabecalho_title = "Sistema de Cadastro de Clientes";
+     //Header - Inclui o header ( cabeçalho no documento atual)
     include_once 'includes/header.php';
 
 ?>
@@ -12,7 +20,7 @@
 <!--Inicio do body.-->
     <div class="row"> <!--Div Classe Linhas-->
     <div class="col s12 m6 push-m3"><!--Especifica o numero de colunas de acorddo com o tamanho da tela-->
-        <h3 class="light">Clientes</h3><!--Texto Titulo H3-->
+        <h3 class="light">Clientes Cadastrados</h3><!--Texto Titulo H3-->
         <table class="hoghtlight striped"><!--Classe do FW que adiciona efeito zebrado na lista-->
             <thead><!--Inicio cabeçalho tabela-->
                 <tr><!--Define uma linha com conteudos th-->
@@ -27,7 +35,7 @@
 
                 <?php /*Inicio codigo php que trata o caso de não haver elementos noBD*/
                     $sql = "SELECT*FROM clientes";/*Seleciona a tabela no BD  e salva na var $sql*/
-                    $resultado = mysqli_query($connect, $sql);/*Adiciona a conexão a var $resultado*/
+                    $resultado = mysqli_query($conexao, $sql);/*Adiciona a conexão a var $resultado*/
 
                     if (mysqli_num_rows($resultado) > 0):/*Se o resultado for > que 0 o wile é exec*/
 
@@ -56,7 +64,7 @@
                 <!--Fim Janela Model-->
 
                 <!--form com input do tipo hidden com o id do dado a ser excluido-->
-                <form action="php_action/delete.php" method="POST">
+                <form action="php_action/deletar.php" method="POST">
                     <input type="hidden" name="id" value="<?php echo $dados['id']; ?>">
                     <button type="dubmit" name="btn-deletar" class="btn red">Sim, quero deletar.</button>
             

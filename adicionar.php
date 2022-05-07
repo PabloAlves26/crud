@@ -1,4 +1,6 @@
-<?php 
+<?php /*Código para adicionar titulo dinãmicamente atraves de uma variavel */
+    $cabecalho_title = "Adicionar Cliente";
+    /*Código para Incluir o cabeçalho a pagina atual */
     include_once 'includes/header.php';
 ?>
 

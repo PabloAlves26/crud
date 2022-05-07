@@ -2,7 +2,7 @@
 //Sessão
 session_start();
 //Conexão
-require_once 'db_connect.php';
+require_once 'conexao_com_banco.php';
 
 if(isset($_POST['btn-cadastrar'])):
     $nome = filter_input (INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
@@ -13,11 +13,11 @@ if(isset($_POST['btn-cadastrar'])):
     $sql = "INSERT INTO clientes (nome, sobrenome, email, idade) 
         VALUES ('$nome', '$sobrenome', '$email', '$idade')";
 
-    if(mysqli_query($connect, $sql)):
+    if(mysqli_query($conexao, $sql)):
         $_SESSION['mensagem'] = "<center>Cadastrado com Sucesso!</center>";
         header('Location: ../index.php');
     else:
-        $_SESSION['mensagem'] = "Erro ao Cadastrar!";
+        $_SESSION['mensagem'] = "<center>Erro ao Cadastrar!</center>";
         header('Location: ../index.php');
     endif;
 endif;
